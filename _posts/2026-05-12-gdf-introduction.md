@@ -20,6 +20,6 @@ MonoGame handles the graphics, input and audio management, and also provides a b
 
 An other option I considered was raylib, which is excellent for educational purposes. But it's way too simple compared to a framework like MonoGame and it's more suitable for total beginners or maybe hobbyists. MonoGame is a more structured option than raylib, but that doesn't mean it's worse for learning. It's a proven framework and a solid choice for our purposes.
 
-And lastly, C# is a suitable programming language in our case. Without dealing with things like memory management, it allows us to focus on systems with a clean architecture. We're not going to have a business with performance-critical things that every milliseconds is relatively important like handling thousands of game objects. For our purposes, it is more than enough
+And lastly, C# is a suitable programming language in our case. Without dealing with things like memory management, it allows us to focus on systems with a clean architecture. We're not going to have a business with performance-critical things that every milliseconds is relatively important like handling thousands of game objects. For our purposes, it is more than enough.
 
 In the next part, we're going to look at scene management in MonoGame.
