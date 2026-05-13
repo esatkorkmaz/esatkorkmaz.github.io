@@ -6,7 +6,7 @@ category: gamedev-fundamentals
 layout: post
 ---
 
-Video games includes different stages to complete any kind of objective. These stages are called levels. Modern game engines like Unity and Unreal treat levels as seperated stages, but Godot has a different approach that includes both levels and "templates" for game objects (bullets, NPCs etc.) in a single entity. In Unity and Unreal, these "templates" for game objects are called Prefabs and Blueprint Classes in order, making them seperate from levels. In Godot, you do both levels and templates in a single entity called "scenes". (different from Unity's scenes which only meant to be used for levels) To avoid confusion and being simple, I'm also going to seperate the levels and templates.
+Modern game engines like Unity and Unreal treat levels as seperated stages, but Godot has a different approach that includes both levels and "templates" for game objects (bullets, NPCs etc.) in a single entity. In Unity and Unreal, these "templates" for game objects are called Prefabs and Blueprint Classes in order, making them seperate from levels. In Godot, you do both levels and templates in a single entity called "scenes". (different from Unity's scenes which only meant to be used for levels) To avoid confusion and being simple, I'm also going to seperate the levels and templates.
 
 Let's call our levels as "scenes" like Unity does. As I said, this is different from Godot's "scene" concept. Our scenes are just levels like I mentioned above.
 
