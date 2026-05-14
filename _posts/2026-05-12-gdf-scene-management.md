@@ -122,6 +122,7 @@ public class SceneManager
     {
         currentScene?.UnloadContent();
         currentScene = newScene;
+        currentScene.Initialize();
         currentScene.LoadContent(_content, _spriteBatch);
     }
 
