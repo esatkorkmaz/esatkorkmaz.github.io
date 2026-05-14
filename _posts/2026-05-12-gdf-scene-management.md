@@ -257,4 +257,4 @@ And here's the result:
 
 ![](/assets/scene-management.jpg)
 
-In the next part, we're going to look at ingame entities known as "game objects".
+In the next part, we're going to look at ingame entities known as "game objects", and components of these entities.

@@ -1,5 +1,5 @@
 ---
-title: 'Game Dev Fundamentals Series #3: Ingame Entities'
+title: 'Game Dev Fundamentals Series #3: Ingame Entities and Components'
 author: Esat Korkmaz
 date: 2026-05-13
 category: gamedev-fundamentals
