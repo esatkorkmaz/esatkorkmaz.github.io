@@ -130,15 +130,19 @@ public class InputManager
 }
 ```
 
-Here's our input action, input map and input manager classes. Before getting into destroying the cube section, I want to say that I changed the scene interface, now it's an abstract class and manages the ingame entities in a list. This was a must since previously I managed the game object's code directly from the scene and this caused problems when I tried to destroy it. (related to the previous part's invalid component reference stuff)
+Here's our input action, input map and input manager classes. Before getting into destroying the cube section, I want to say that I changed the scene interface, now it's an abstract class and manages the ingame entities in a list. This was a must since previously I managed the game object's code directly from the scene and this caused problems when I tried to destroy it. (related to the previous part's invalid component reference stuff) This is also going to be useful in our next part.
 
 ```cs
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 
 public abstract class GameScene
 {
-    protected readonly List<GameObject> gameObjects = new List<GameObject>();
+    private readonly List<GameObject> gameObjects = new List<GameObject>();
+
+    public IReadOnlyList<GameObject> GameObjects { get => gameObjects.AsReadOnly(); }
 
     public virtual void Initialize() { }
     public virtual void LoadContent()
@@ -168,10 +172,43 @@ public abstract class GameScene
         foreach (var gameObject in gameObjects)
             gameObject.Draw(gameTime);
     }
+
+    public void AddGameObject(GameObject gameObject)
+    {
+        if (HasGameObject(gameObject.Id))
+        {
+            throw new Exception($"GameObject with ID '{gameObject.Id}' already exists");
+        }
+
+        gameObjects.Add(gameObject);
+    }
+
+    public bool HasGameObject(string id)
+    {
+        return gameObjects.Any(go => go.Id == id);
+    }
+
+    public GameObject FindGameObject(string id)
+    {
+        return gameObjects.Find(go => go.Id == id);
+    }
+
+    public void RemoveGameObject(string id)
+    {
+        var gameObject = FindGameObject(id);
+
+        if (gameObject != null)
+        {
+            gameObject.UnloadContent();
+            gameObject.Destroy();
+
+            gameObjects.Remove(gameObject);
+        }
+    }
 }
 ```
 
-Should note that I also added Id property to the GameObject class to make them unique, but I didn't implemented any functions for adding gameobjects, getting, checking if already a gameobject with the id exists etc., I already implemented that logic in components and I'm just going to do things manually from our test scene itself.
+Should note that I also added an Id property to the GameObject class to make them unique.
 
 ```cs
 using System;
@@ -187,7 +224,7 @@ public class TestScene : GameScene
 
     public override void Initialize()
     {
-        gameObjects.Add(new ExampleGameObject("example"));
+        AddGameObject(new ExampleGameObject("example"));
 
         _font = Globals.Content.Load<SpriteFont>("TextFont");
         _text = "Hello, MonoGame!";
@@ -195,12 +232,7 @@ public class TestScene : GameScene
 
         _destroyHandler = (action) =>
             {
-                var testObject = gameObjects.Find(go => go.Id == "example");
-                if (testObject == null) return;
-
-                gameObjects.Remove(testObject);
-                testObject.UnloadContent();
-                testObject.Destroy();
+                RemoveGameObject("example");
             };
 
         InputManager.Instance.OnDestroyActionPressed += _destroyHandler;
@@ -244,4 +276,4 @@ Here's the afterwards:
 
 ![](/assets/scene-management.jpg)
 
-In the next part, we're going to look at things related to physics and collisions.
+In the next part, we're going to look at collision detection.
