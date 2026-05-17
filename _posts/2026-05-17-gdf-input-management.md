@@ -280,4 +280,4 @@ Here's the afterwards:
 
 ![](/assets/scene-management.jpg)
 
-In the next part, we're going to look at collision detection.
+In the next part, we're going to look at collision detection and physics.
