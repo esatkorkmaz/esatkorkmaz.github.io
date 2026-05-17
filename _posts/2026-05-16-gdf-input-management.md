@@ -1,7 +1,7 @@
 ---
 title: 'Game Dev Fundamentals Series #4: Input Management'
 author: Esat Korkmaz
-date: 2026-05-17
+date: 2026-05-16
 category: gamedev-fundamentals
 layout: post
 ---
