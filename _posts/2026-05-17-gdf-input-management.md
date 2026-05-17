@@ -15,15 +15,15 @@ In this part, we're going to destroy the cube in our scene. This is going to be 
 This is pretty barebones, and it's definitely not production-ready, but I only want you to get the idea.
 
 ```cs
-using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Input;
-
 public enum InputAction
 {
     DESTROY_THE_CUBE
 }
+```
 
+This is our input actions enum. Input actions are unique so enums make sense. Could also use strings too. But I can see all enums when I write "InputAction." in my code editor. Also, this is probably better for performance.
+
+```cs
 public class InputMap
 {
     private Dictionary<InputAction, HashSet<Keys>> _bindings = [];
@@ -75,7 +75,11 @@ public class InputMap
         return null;
     }
 }
+```
 
+This is our input map. Basically this is the "bridge" where all actions and keys stored as dictionaries. An input action can have more than one key. I used HashSet type to prevent duplications in key bindings. Also, the current code allows you to add the same key to more than one action, I haven't tested the consequences of it, probably both bindings would work if you ever try. But if you don't want more than one action uses the same key, there's a function you can use for your purposes called "FindActionByKey" to check if there's any action has the key value you passed.
+
+```cs
 public class InputManager
 {
     public static InputManager Instance { get; private set; }
@@ -130,7 +134,7 @@ public class InputManager
 }
 ```
 
-Here's our input action, input map and input manager classes. Before getting into destroying the cube section, I want to say that I changed the scene interface, now it's an abstract class and manages the ingame entities in a list. This was a must since previously I managed the game object's code directly from the scene and this caused problems when I tried to destroy it. (related to the previous part's invalid component reference stuff) This is also going to be useful in our next part.
+Lastly, this is our input manager. Before getting into destroying the cube section, I want to say that I changed the scene interface, now it's an abstract class and manages the ingame entities in a list. This was a must since previously I managed the game object's code directly from the scene and this caused problems when I tried to destroy it. (related to the previous part's invalid component reference stuff) This is also going to be useful in our next part.
 
 ```cs
 using System;
