@@ -583,5 +583,3 @@ public class TestScene : GameScene
 And here's the result, our character falls to the top of our platform:
 
 ![](/assets/collision-detection-physics.jpg)
-
-In the next part, we're going to look at camera systems.
